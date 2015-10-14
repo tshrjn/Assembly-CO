@@ -6,6 +6,7 @@ Part of Lab Course at IIT Mandi - CS201, Fall '15
 Sample Prog : Add of 2 inputs
 
 Assgn-1 	: Sum of N inputs
+
 Assgn-2		: Sum. Mean & Variance of N Inputs
 
 		--Implemented as Int
