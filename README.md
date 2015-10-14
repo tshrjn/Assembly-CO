@@ -11,7 +11,7 @@ Assgn-2		: Sum. Mean & Variance of N Inputs
 
 # Usage
 
-$ nasm -f elf32 -g -F stabs test.asm -l testlist.asm
+$ nasm -f elf32 -g -F stabs test.asm -l testlist.asm \n
 $ ld -m elf_i386 -o testexe test.io io.o
 
 Important flags used:
