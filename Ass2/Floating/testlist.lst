@@ -169,7 +169,7 @@
    169                                  %macro customFloatDiv 2
    170                                        mov AX,%1
    171                                        mov CX,%2
-   172                                  characteristic:
+   172                                  %%characteristic:
    173                                           
    174                                        mov DX,0
    175                                        div CX                        ; CX is the divsior, DX:AX - Dividend
@@ -180,9 +180,9 @@
    180                                        mov [precision],EBX
    181                                  ;     PutLInt EBX
    182                                        cmp EBX,0
-   183                                        jle end_decimal
-   184                                  ;     jmp end_decimal
-   185                                  decimal:
+   183                                        jle %%end_decimal
+   184                                  ;     jmp %%end_decimal
+   185                                  %%decimal:
    186                                        mov [precision], EBX
    187                                        mov AX,DX
    188                                        mov BX,10
@@ -192,8 +192,8 @@
    192                                  
    193                                        mov EBX,[precision]
    194                                        dec EBX
-   195                                        jnz decimal         
-   196                                  end_decimal:
+   195                                        jnz %%decimal         
+   196                                  %%end_decimal:
    197                                        nwln
    198                                  %endmacro
    199                                  
@@ -374,7 +374,7 @@
    374                                        customFloatDiv [sum],CX
    375 000000EA 66A1[00000000]      <1>  mov AX,%1
    376 000000F0 6689C9              <1>  mov CX,%2
-   377                              <1> characteristic:
+   377                              <1> %%characteristic:
    378                              <1> 
    379 000000F3 66BA0000            <1>  mov DX,0
    380 000000F7 66F7F1              <1>  div CX
@@ -393,9 +393,9 @@
    393 00000116 891D[21000000]      <1>  mov [precision],EBX
    394                              <1> 
    395 0000011C 83FB00              <1>  cmp EBX,0
-   396 0000011F 7E28                <1>  jle end_decimal
+   396 0000011F 7E28                <1>  jle %%end_decimal
    397                              <1> 
-   398                              <1> decimal:
+   398                              <1> %%decimal:
    399 00000121 891D[21000000]      <1>  mov [precision], EBX
    400 00000127 6689D0              <1>  mov AX,DX
    401 0000012A 66BB0A00            <1>  mov BX,10
@@ -409,8 +409,8 @@
    409                              <1> 
    410 00000140 8B1D[21000000]      <1>  mov EBX,[precision]
    411 00000146 4B                  <1>  dec EBX
-   412 00000147 75D8                <1>  jnz decimal
-   413                              <1> end_decimal:
+   412 00000147 75D8                <1>  jnz %%decimal
+   413                              <1> %%end_decimal:
    414                              <1>  nwln
    415 00000149 E8(00000000)        <2>  call proc_nwln
    416                                        nwln
@@ -425,10 +425,10 @@
    425 00000162 E8(00000000)        <1>  call proc_PutStr
    426 00000167 59                  <1>  pop ECX
    427                                        ;PutInt DI
-   428                                        customFloatDiv2 DI,CX
+   428                                        customFloatDiv DI,CX
    429 00000168 6689F8              <1>  mov AX,%1
    430 0000016B 6689C9              <1>  mov CX,%2
-   431                              <1> characteristic2:
+   431                              <1> %%characteristic:
    432                              <1> 
    433 0000016E 66BA0000            <1>  mov DX,0
    434 00000172 66F7F1              <1>  div CX
@@ -447,9 +447,9 @@
    447 00000191 891D[21000000]      <1>  mov [precision],EBX
    448                              <1> 
    449 00000197 83FB00              <1>  cmp EBX,0
-   450 0000019A 7E28                <1>  jle end_decimal2
+   450 0000019A 7E28                <1>  jle %%end_decimal
    451                              <1> 
-   452                              <1> decimal2:
+   452                              <1> %%decimal:
    453 0000019C 891D[21000000]      <1>  mov [precision], EBX
    454 000001A2 6689D0              <1>  mov AX,DX
    455 000001A5 66BB0A00            <1>  mov BX,10
@@ -463,8 +463,8 @@
    463                              <1> 
    464 000001BB 8B1D[21000000]      <1>  mov EBX,[precision]
    465 000001C1 4B                  <1>  dec EBX
-   466 000001C2 75D8                <1>  jnz decimal2
-   467                              <1> end_decimal2:
+   466 000001C2 75D8                <1>  jnz %%decimal
+   467                              <1> %%end_decimal:
    468                              <1>  nwln
    469 000001C4 E8(00000000)        <2>  call proc_nwln
    470                                        nwln

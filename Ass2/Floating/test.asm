@@ -4,6 +4,7 @@
 ;       Input: Requests n  integers  from the user.
 ;       Output: Output the sum, mean & variance of inputted number.
 ;       Problem: Using Labels in macros
+        Solution: %%labelname
 %include "io.mac"
 ;;;-----------------------------------------------------------------------------
 ;extern printf
@@ -19,7 +20,7 @@
 %macro customFloatDiv 2
       mov AX,%1
       mov CX,%2
-characteristic:
+%%characteristic:
          
       mov DX,0
       div CX                        ; CX is the divsior, DX:AX - Dividend
@@ -30,9 +31,9 @@ characteristic:
       mov [precision],EBX
 ;     PutLInt EBX
       cmp EBX,0
-      jle end_decimal
-;     jmp end_decimal
-decimal:
+      jle %%end_decimal
+;     jmp %%end_decimal
+%%decimal:
       mov [precision], EBX
       mov AX,DX
       mov BX,10
@@ -42,44 +43,11 @@ decimal:
 
       mov EBX,[precision]
       dec EBX
-      jnz decimal         
-end_decimal:
+      jnz %%decimal         
+%%end_decimal:
       nwln
 %endmacro
 
-
-;;; Problem: Label in macro
-; -------------hence, a repeat macro with diff name
-%macro customFloatDiv2 2
-      mov AX,%1
-      mov CX,%2
-characteristic2:
-         
-      mov DX,0
-      div CX                        ; CX is the divsior, DX:AX - Dividend
-      PutInt  AX                    ; Quotient is stored in AX & Remainder in DX
-      PutCh   '.'
-      
-      mov EBX,3                     ; Hard-coded precision of 3
-      mov [precision],EBX
-;     PutLInt EBX
-      cmp EBX,0
-      jle end_decimal2
-;     jmp end_decimal2
-decimal2:
-      mov [precision], EBX
-      mov AX,DX
-      mov BX,10
-      mul BX
-      div CX
-      PutInt  AX
-
-      mov EBX,[precision]
-      dec EBX
-      jnz decimal2         
-end_decimal2:
-      nwln
-%endmacro
 ;--------------------------------------------------------------------------------------
 
 
